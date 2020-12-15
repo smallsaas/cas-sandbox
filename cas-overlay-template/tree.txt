@@ -1,0 +1,17 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< org.apereo.cas:cas-overlay >---------------------
+[INFO] Building cas-overlay 1.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ cas-overlay ---
+[INFO] org.apereo.cas:cas-overlay:war:1.0
+[INFO] +- mysql:mysql-connector-java:jar:8.0.21:compile
+[INFO] |  \- com.google.protobuf:protobuf-java:jar:3.11.4:compile
+[INFO] \- org.apereo.cas:cas-server-webapp-tomcat:war:5.3.16:runtime
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.224 s
+[INFO] Finished at: 2020-12-11T16:10:24+08:00
+[INFO] ------------------------------------------------------------------------
