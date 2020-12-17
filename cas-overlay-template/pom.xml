@@ -13,11 +13,11 @@
     <dependencies>
 
         <!--开启cas server的rest支持-->
-        <dependency>
+<!--        <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-rest</artifactId>
             <version>${cas.version}</version>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
@@ -25,12 +25,7 @@
             <artifactId>shiro-core</artifactId>
             <version>1.2.4</version>
         </dependency>
-        <!--新增支持jdbc验证-->
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-jdbc</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
+
 
 
         <dependency>
@@ -40,7 +35,12 @@
         </dependency>
 
 
-
+        <!--新增支持jdbc验证-->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-jdbc</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
         <!--自定义认证，重写Credential-->
         <dependency>
             <groupId>org.apereo.cas</groupId>
@@ -67,9 +67,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
@@ -79,6 +76,17 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-authentication-api</artifactId>
+            <version>5.3.16</version>
+        </dependency>
+        <!-- Custom Configuration -->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-configuration-api</artifactId>
+            <version>${cas.version}</version>
         </dependency>
 
     </dependencies>
@@ -139,6 +147,28 @@
             </plugin>
         </plugins>
         <finalName>cas</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>**/css/**</directory>
+            </resource>
+            <resource>
+                <directory>**/js/**</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
 
     <properties>
@@ -301,4 +331,6 @@
             </build>
         </profile>
     </profiles>
+
+
 </project>
