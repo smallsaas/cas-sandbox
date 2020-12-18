@@ -20,8 +20,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 public class CustomAuthenticationConfiguration implements AuthenticationEventExecutionPlanConfigurer {
 
-    @Autowired
-    private CasConfigurationProperties casProperties;
 
     @Autowired
     @Qualifier("servicesManager")

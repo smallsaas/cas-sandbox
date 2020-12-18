@@ -9,7 +9,6 @@
     <version>1.0.0</version>
 
 
-
     <dependencies>
 
         <!--开启cas server的rest支持-->
@@ -148,26 +147,6 @@
         </plugins>
         <finalName>cas</finalName>
 
-        <resources>
-            <resource>
-                <directory>src/main/webapp</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-            <resource>
-                <directory>**/css/**</directory>
-            </resource>
-            <resource>
-                <directory>**/js/**</directory>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
 
     </build>
 
