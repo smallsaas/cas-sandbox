@@ -16,6 +16,7 @@ spring:
       enabled: true
     converters:
       preferred-json-mapper: fastjson
+
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 
@@ -35,6 +36,23 @@ mybatis-plus:
     lazyLoadingEnabled: true #延时加载的开关
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+
+cas:
+  #cas服务端的地址
+  server-url-prefix: http://localhost:8080/cas
+  #cas服务端的登录地址
+  server-login-url: http://localhost:8080/cas/login
+  #当前服务器的地址(客户端)
+  client-host-url: http://localhost:8081
+  #Ticket校验器使用Cas30ProxyReceivingTicketValidationFilter
+  validation-type: cas
+
+cas-custom:
+  server-url: http://localhost:8080
+  client-url: http://localhost:8081
+  success-url: http://localhost:8081/cas/client/auth/test
+
 
 ---
 
