@@ -1,6 +1,5 @@
 package com.jfeat.am.module.cg.config;
 
-import org.jasig.cas.client.authentication.AuthenticationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
