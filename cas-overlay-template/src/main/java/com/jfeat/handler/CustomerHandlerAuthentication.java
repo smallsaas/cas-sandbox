@@ -16,13 +16,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.annotation.Resource;
 import javax.security.auth.login.FailedLoginException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 @Configuration("CustomerHandlerAuthentication")
@@ -53,6 +61,8 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
         String username = usernamePasswordCredentia.getUsername();
         String password = usernamePasswordCredentia.getPassword();
 
+        //清除session和Cookie
+        /*invalidateCookieAndSession();*/
 
         logger.info("username:{}",username);
         logger.info("password:{}",password);
@@ -68,8 +78,9 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
 
 
         final List<MessageDescriptor> list = new ArrayList<>();
-        return createHandlerResult(usernamePasswordCredentia,
+        AuthenticationHandlerExecutionResult AHER = createHandlerResult(usernamePasswordCredentia,
                 this.principalFactory.createPrincipal(username, Collections.emptyMap()), list);
+        return AHER;
     }
 
     private SysUser getSysUser(String username){
@@ -93,6 +104,27 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
     Boolean checkPassword(String password,String salt,String sqlPassword){
         String passwordMd5 = Md5Utils.md5(password,salt);
         return sqlPassword.equals(passwordMd5);
+    }
+
+    public void invalidateCookieAndSession(){
+
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+        HttpServletResponse response =((ServletWebRequest)RequestContextHolder.getRequestAttributes()).getResponse();
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie:cookies){
+            String name = cookie.getName();
+            if(name!=null && name.equals("TGC")){
+                cookie.setMaxAge(0);
+                cookie.setPath("/cas/");
+                response.addCookie(cookie);
+            }
+        }
+        HttpSession requestSession = request.getSession();
+        if(requestSession!=null){
+            requestSession.invalidate();
+        }
+
     }
 
 }
