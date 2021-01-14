@@ -18,6 +18,13 @@
             <version>${cas.version}</version>
         </dependency>-->
 
+        <!-- 开启jpa方式server注册 -->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-jpa-service-registry</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.shiro</groupId>

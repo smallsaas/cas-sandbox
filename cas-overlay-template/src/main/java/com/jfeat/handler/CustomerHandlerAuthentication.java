@@ -27,10 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Configuration("CustomerHandlerAuthentication")
@@ -76,10 +73,18 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
             throw new FailedLoginException("密码错误");
         }
 
-
         final List<MessageDescriptor> list = new ArrayList<>();
+        // 返回给客户端的属性信息
+        HashMap<String, Object> returnInfo = new HashMap<>();
+        //returnInfo.put("expired", info.getDisabled());
+        returnInfo.put("email", sysUser.getEmail());
+        returnInfo.put("username", sysUser.getName());
+        returnInfo.put("password", sysUser.getPassword());
+        returnInfo.put("phone", sysUser.getPhone());
+        returnInfo.put("account", sysUser.getAccount());
+
         AuthenticationHandlerExecutionResult AHER = createHandlerResult(usernamePasswordCredentia,
-                this.principalFactory.createPrincipal(username, Collections.emptyMap()), list);
+                this.principalFactory.createPrincipal(username, returnInfo), list);
         return AHER;
     }
 
