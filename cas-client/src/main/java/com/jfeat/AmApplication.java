@@ -1,6 +1,5 @@
 package com.jfeat;
 
-import net.unicon.cas.client.configuration.EnableCasClient;
 import org.jasig.cas.client.authentication.AuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableCasClient // 启用cas 客户端
+
 @SpringBootApplication
 public class AmApplication {
     protected final static Logger logger = LoggerFactory.getLogger(AmApplication.class);

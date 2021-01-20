@@ -49,8 +49,14 @@ public class AuthorizedEndpoing {
     }
 
     @RequestMapping("/test")
-    public String test(){
-        return "-----test-----";
+    public String test(HttpServletRequest request){
+        //获取cas给我们传递回来的对象，这个东西放到了session中
+        //session的 key是 _const_cas_assertion_
+        Assertion assertion = (Assertion) request.getSession().getAttribute(AbstractCasFilter.CONST_CAS_ASSERTION);
+        //获取登录用户名
+        String loginName = assertion.getPrincipal().getName();
+        System.out.printf("登录用户名:%s\r\n", loginName);
+        return "登录用户名:%s\r\n"+loginName;
     }
 
     /**

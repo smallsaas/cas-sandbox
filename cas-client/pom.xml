@@ -21,12 +21,27 @@
     </properties>
 
     <dependencies>
-        <!--依赖cas 配置jar  -->
+
+
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--CAS Client-->
+        <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
+        <!--依赖cas 配置jar  -->
+       <!-- <dependency>
             <groupId>net.unicon.cas</groupId>
             <artifactId>cas-client-autoconfig-support</artifactId>
             <version>2.3.0-GA</version>
-        </dependency>
+        </dependency>-->
 
         <!--CAS Client-->
     <!--    <dependency>

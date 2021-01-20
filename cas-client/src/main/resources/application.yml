@@ -16,6 +16,19 @@ spring:
       enabled: true
     converters:
       preferred-json-mapper: fastjson
+  cas:
+    assertion-filters: /*
+    auth-filters: /*
+    cas-server-login-url: http://localhost:8080/cas/login
+    cas-server-url-prefix: http://localhost:8080/cas/
+    # 定义认证时候忽略的URL信息，多个可用|分割 支持正则
+    ignore-filters: /client/auth/logout
+    redirect-after-validation: true
+    request-wrapper-filters: /*
+    server-name: http://localhost:8081
+    sign-out-filters: /*
+    use-session: true
+    validate-filters: /*
 
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
@@ -37,26 +50,6 @@ mybatis-plus:
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
-
-cas:
-  #cas服务端的地址
-  server-url-prefix: http://localhost:8080/cas
-  #cas服务端的登录地址
-  server-login-url: http://localhost:8080/cas/login
-  #当前服务器的地址(客户端)
-  client-host-url: http://localhost:8081
-  #Ticket校验器使用Cas30ProxyReceivingTicketValidationFilter
-  validation-type: cas3
-  validation-url-patterns:
-    - /*
-  authentication-url-patterns:
-    - /*
-  #将Assertion绑定到ThreadLocal
-  #assertion-thread-local-url-patterns:
-    # - /client/auth/*
-  #在HttpServletRequest对象再包装一次，让其支持getUserPrincipal，getRemoteUser方法来取得登录的用户信息
-  #request-wrapper-url-patterns:
-    # - /client/auth/*
 
 
 
