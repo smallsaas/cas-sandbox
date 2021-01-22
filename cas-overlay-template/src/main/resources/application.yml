@@ -10,9 +10,5 @@ server:
 #https://my.oschina.net/kingchen8080/blog/994367
 
 
-datasource:
-  url: jdbc:mysql://localhost:3307/uaas-saas?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
-  username: root
-  password: root
-  sql: SELECT * FROM t_sys_user WHERE account = ?
+
 

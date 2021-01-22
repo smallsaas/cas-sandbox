@@ -8,10 +8,14 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("datasource")
 public class MysqlConfig {
 
-    public static String url="jdbc:mysql://localhost:3307/uaas-saas?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
-    public static String username="root";
-    public static String password="root";
-    public static String sql="SELECT * FROM t_sys_user WHERE account = ?";
+/*  public  String url="jdbc:mysql://localhost:3307/uaas-saas?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
+    public  String username="root";
+    public  String password="root";
+    public  String sql="SELECT * FROM t_sys_user WHERE account = ?";*/
+    public  String url;
+    public  String username;
+    public  String password;
+    public  String sql="SELECT * FROM t_sys_user WHERE account = ?";
 
     public String getUrl() {
         return url;

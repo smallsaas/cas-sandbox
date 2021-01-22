@@ -36,7 +36,8 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerHandlerAuthentication.class);
 
-
+    @Resource
+    MysqlConfig mysqlConfig;
 
 
     @Override
@@ -91,16 +92,24 @@ public class CustomerHandlerAuthentication extends AbstractPreAndPostProcessingA
     private SysUser getSysUser(String username){
         // JDBC模板依赖于连接池来获得数据的连接，所以必须先要构造连接池
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        String url = mysqlConfig.getUrl();
+        String userName = mysqlConfig.getUsername();
+        System.out.println("=================DataBase INFO====================");
+        System.out.println(url);
+        System.out.println(userName);
+
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl(MysqlConfig.url);
-        dataSource.setUsername(MysqlConfig.username);
-        dataSource.setPassword(MysqlConfig.password);
+        dataSource.setUrl(url);
+        dataSource.setUsername(userName);
+        dataSource.setPassword(mysqlConfig.getPassword());
 
         // 创建JDBC模板
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
 
-        String sql = MysqlConfig.sql;
+        String sql = mysqlConfig.getSql();
+        System.out.println("sql:"+sql);
+        System.out.println("username:"+username);
         SysUser info = (SysUser) jdbcTemplate.queryForObject(sql, new Object[]{username}, new BeanPropertyRowMapper(SysUser.class));
 
         return info;
