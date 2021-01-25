@@ -1,0 +1,15 @@
+version: "3"
+services:          
+  cas-server-manager:
+    image: cas-manager
+    container_name: cas-server-manager
+    build: 
+      context: .
+    volumes:
+ #     - ./server-manager/logs:/usr/local/tomcat/logs
+ #     - ./server-manager:/usr/local/tomcat/webapps
+ #     - ./server-manager/config:/usr/local/tomcat/config
+ #     - ./server-manager/config/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./server-manager:/webapps/etc/cas
+    ports:
+      - '8082:8080'

@@ -9,7 +9,7 @@ spring.thymeleaf.order=1
 # Embedded CAS Tomcat Container
 #
 server.context-path=/cas-management
-server.port=8080
+server.port=8087
 #server.ssl.key-store=calsspath:thekeystore
 #server.ssl.key-store-password=changeit
 #server.ssl.key-password=changeit
@@ -20,7 +20,7 @@ mgmt.defaultLocale=zh_CN
 ##
 # CAS Server
 #
-cas.server.name=http://192.168.3.239:8081
+cas.server.name=http://localhost:8080
 cas.server.prefix=${cas.server.name}/cas
 ##
 # Log4J Configuration
@@ -80,8 +80,8 @@ endpoints.actuator.enabled=
 #
 cas.serviceRegistry.jpa.user=root
 cas.serviceRegistry.jpa.password=root
-cas.serviceRegistry.jpa.driverClass=com.mysql.cj.jdbc.Driver
-cas.serviceRegistry.jpa.url=jdbc:mysql://192.168.3.239:3307/cas?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+cas.serviceRegistry.jpa.driverClass=com.mysql.jdbc.Driver
+cas.serviceRegistry.jpa.url=jdbc:mysql://localhost:3307/uaas-saas?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
 cas.serviceRegistry.jpa.dialect=org.hibernate.dialect.MySQL5Dialect
 
 cas.serviceRegistry.jpa.failFastTimeout=1
