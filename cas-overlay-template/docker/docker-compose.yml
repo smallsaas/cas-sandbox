@@ -1,0 +1,13 @@
+version: "3"
+services:
+  cas-server:
+    image: tomcat:8
+    container_name: cas-server
+    privileged: true
+    volumes:
+      - ./server/logs:/usr/local/tomcat/logs
+      - ./server:/usr/local/tomcat/webapps
+      - ./server/config:/usr/local/tomcat/config
+
+    ports:
+      - '8081:8080'
