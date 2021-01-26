@@ -1,57 +1,40 @@
-CAS Management Overlay
-============================
+## CAS管理端
+### 部署
+1. 将docker复制到项目文件夹
+2. docker-compose build
+3. docker-compose up -d 启动容器
+4. docker logs -f -t cas-server-manager 查看日志
 
-CAS management web application Maven overlay for CAS with externalized configuration. The Gradle equivalent of this overlay is [available here](https://github.com/apereo/cas-management-gradle-overlay).
+### 本地运行
+根据系统不同运行以下命令（二选一）
+1.build.cmd run
+2.build.sh.run
 
-# Versions
+### 主要配置说明
 
-```xml
-<cas.version>5.3.x</cas.version>
 ```
+管理端访问路由
+server.context-path=/cas-management
+管理端端口
+server.port=8080
+# cas-management服务地址 部署的时候 此处的localhost改为对应服务器的ip地址
+mgmt.serverName=http://localhost:${server.port}
+# 语音改中文，但没生效
+mgmt.defaultLocale=zh_CN
 
-# Requirements
+##
+# CAS Server
+#
+# 需要配置服务器的ip 和 路由
+cas.server.name=http://192.168.3.239:8081
+cas.server.prefix=${cas.server.name}/cas
 
-* JDK 1.8+
+#  自定义属性 用于定义返回的字段 也可以在管理端（管理端部署后的页面）设置全返回（所有字段 不限于此处定义）
+cas.authn.attributeRepository.stub.attributes.uid=uid
+cas.authn.attributeRepository.stub.attributes.givenName=givenName
 
-# Build
+数据库配置和服务端相同，参考服务端配置流程即可
 
-To see what commands are available to the build script, run:
 
-```bash
-./build.sh help
+
 ```
-
-To package the final web application, run:
-
-```bash
-./build.sh package
-```
-
-To update `SNAPSHOT` versions run:
-
-```bash
-./build.sh package -U
-```
-
-## Windows Build
-
-On Windows you can run build.cmd instead of build.sh. The usage may differ from build.sh, run "build.cmd help" for usage.
-
-## Note
-
-If you are running the management web application on the same machine as the CAS server web application itself, 
-you will need to evaluate the build script and make sure the configuration files don't override each other.
-
-
-# Deployment
-
-## Embedded Tomcat
-
-CAS will be available at:
-
-* `http://cas.server.name:8080/cas-management`
-* `https://cas.server.name:8443/cas-management`
-
-## External
-
-Deploy resultant `target/cas-management.war`  to a servlet container of choice.
